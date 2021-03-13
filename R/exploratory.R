@@ -17,7 +17,7 @@
 #' @examples
 #' if (interactive()) {exploratory(data = mtcars)}
 #' @export
-#' @import data.table ggplot2 shiny shinydashboard
+#' @import data.table ggplot2 kim shiny shinydashboard
 exploratory <- function(
   data = NULL,
   sigfig = 3,
@@ -754,10 +754,10 @@ exploratory <- function(
                   1/nrow(e_corr_dt), 
                   detail = paste0(i, " out of ", nrow(e_corr_dt)))
                 # values for iv and dv
-                e_corr_iv_name <- e_corr_dt[, iv][i]
-                e_corr_dv_name <- e_corr_dt[, dv][i]
+                e_corr_iv_name <- e_corr_dt[["iv"]][i]
+                e_corr_dv_name <- e_corr_dt[["dv"]][i]
                 # formula for correlation
-                e_corr_formula <- as.formula(paste0(
+                e_corr_formula <- stats::as.formula(paste0(
                   "~ ", e_corr_dv_name, " + ", e_corr_iv_name))
                 # correlation function
                 cor_test_result <- tryCatch(
@@ -790,8 +790,8 @@ exploratory <- function(
           # rbind data tables
           e_corr_r_p_dt <- rbindlist(e_corr_r_p)
           # drop the note column if no errors or warnings were produced
-          if (all(is.na(e_corr_r_p_dt[, note]))) {
-            e_corr_r_p_dt[, note := NULL]
+          if (all(is.na(e_corr_r_p_dt[["note"]]))) {
+            e_corr_r_p_dt[, "note" := NULL]
           }
           # add var names
           e_corr_dt <- data.table(e_corr_dt, e_corr_r_p_dt)
@@ -825,11 +825,11 @@ exploratory <- function(
                     1/nrow(e_mod_dt), 
                     detail = paste0(i, " out of ", nrow(e_mod_dt)))
                   # values for iv and dv
-                  e_mod_iv_name <- e_mod_dt[, iv][i]
-                  e_mod_mod_name <- e_mod_dt[, mod][i]
-                  e_mod_dv_name <- e_mod_dt[, dv][i]
+                  e_mod_iv_name <- e_mod_dt[["iv"]][i]
+                  e_mod_mod_name <- e_mod_dt[["mod"]][i]
+                  e_mod_dv_name <- e_mod_dt[["dv"]][i]
                   # formula for regression
-                  formula_2 <- as.formula(paste0(
+                  formula_2 <- stats::as.formula(paste0(
                     e_mod_dv_name, " ~ ", e_mod_iv_name, " * ", 
                     e_mod_mod_name
                   ))
@@ -859,8 +859,8 @@ exploratory <- function(
           # rbind data tables
           e_mod_int_p_dt <- rbindlist(e_mod_int_p_list)
           # drop the note column if no errors or warnings were produced
-          if (all(is.na(e_mod_int_p_dt[, note]))) {
-            e_mod_int_p_dt[, note := NULL]
+          if (all(is.na(e_mod_int_p_dt[["note"]]))) {
+            e_mod_int_p_dt[, "note" := NULL]
           }
           # add var names
           e_mod_dt <- data.table(e_mod_dt, e_mod_int_p_dt)
@@ -868,9 +868,8 @@ exploratory <- function(
           e_mod_dt[, analysis_type := "moderation"]
           setcolorder(e_mod_dt, "analysis_type")[]
           # round
-          e_mod_dt[, interaction_p_value := signif(
-            interaction_p_value, input$sigfig
-          )]
+          e_mod_dt[["interaction_p_value"]] <- signif(
+            e_mod_dt[["interaction_p_value"]], input$sigfig)
         } else {
           e_mod_dt <- NULL
         }
@@ -893,9 +892,9 @@ exploratory <- function(
                     1/nrow(e_medi_dt), 
                     detail = paste0(i, " out of ", nrow(e_medi_dt)))
                   # values for iv and dv
-                  e_medi_iv_name <- e_medi_dt[, iv][i]
-                  e_medi_medi_name <- e_medi_dt[, medi][i]
-                  e_medi_dv_name <- e_medi_dt[, dv][i]
+                  e_medi_iv_name <- e_medi_dt[["iv"]][i]
+                  e_medi_medi_name <- e_medi_dt[["medi"]][i]
+                  e_medi_dv_name <- e_medi_dt[["dv"]][i]
                   # mediation analysis
                   e_medi_indir_eff_p <- tryCatch(
                     mediation_analysis(
@@ -927,8 +926,8 @@ exploratory <- function(
           # rbind data tables
           e_medi_indir_eff_p_dt <- rbindlist(e_medi_indir_eff_p_list)
           # drop the note column if no errors or warnings were produced
-          if (all(is.na(e_medi_indir_eff_p_dt[, note]))) {
-            e_medi_indir_eff_p_dt[, note := NULL]
+          if (all(is.na(e_medi_indir_eff_p_dt[[" note"]]))) {
+            e_medi_indir_eff_p_dt[, "note" := NULL]
           }
           # add var names
           e_medi_dt <- data.table(e_medi_dt, e_medi_indir_eff_p_dt)
@@ -936,9 +935,8 @@ exploratory <- function(
           e_medi_dt[, analysis_type := "mediation"]
           setcolorder(e_medi_dt, "analysis_type")[]
           # round
-          e_medi_dt[, indirect_effect_p_value := signif(
-            indirect_effect_p_value, input$sigfig
-          )]
+          e_medi_dt[["indirect_effect_p_value"]] <- signif(
+            e_medi_dt[["indirect_effect_p_value"]], input$sigfig)
         } else {
           e_medi_dt <- NULL
         }
@@ -1115,7 +1113,7 @@ exploratory <- function(
           # build the formula
           reg_formula_rhs <- paste0(
             unlist(rhs_term_list), collapse = " + ")
-          reg_formula <- as.formula(
+          reg_formula <- stats::as.formula(
             paste0(input$dv, " ~ ", reg_formula_rhs))
           # regression
           reg_table <- multiple_regression(
