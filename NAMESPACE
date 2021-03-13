@@ -2,9 +2,7 @@
 
 export(exploratory)
 export(update_exploratory)
-export(update_kim)
 import(data.table)
-import(devtools)
 import(ggplot2)
 import(kim)
 import(shiny)

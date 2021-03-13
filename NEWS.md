@@ -1,2 +1,2 @@
-# exploratory 0.1.1
-* Added the exploratory function.
+# exploratory 0.1.3
+* Added the exploratory function and fixed bugs.

@@ -24,7 +24,6 @@
 #' }
 #'
 #' @export
-#' @import devtools
 update_exploratory <- function(
   force = FALSE,
   upgrade = FALSE) {
