@@ -29,7 +29,7 @@ update_exploratory <- function(
   upgrade = FALSE) {
   # unload the package exploratory
   while ("package:exploratory" %in% search()) {
-    detach("package:exploratory", unload = TRUE, character.only = TRUE)
+    unloadNamespace("exploratory")
   }
   # if source is github
   devtools::install_github(
