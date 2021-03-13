@@ -947,7 +947,7 @@ exploratory <- function(
         e_result_dt_list <- Filter(Negate(is.null), e_result_dt_list)
         if (length(e_result_dt_list) > 0) {
           # add id to the exploratory analysis results data sets
-          e_result_dt_list <- kim::id_across_datasets(
+          e_result_dt_list <- id_across_datasets(
             dt_list = e_result_dt_list,
             silent = TRUE)
           # merge the data tables above
