@@ -7,12 +7,12 @@
 #' @param select_list_max maximum number of variable names to display
 #' for dropdown menus
 #' @param saved_analyses_file_name name of the .csv file in which
-#' saved analyses will be recorded 
+#' saved analyses will be recorded
 #' (default = "exploratory_analyses_saved.csv")
 #' @param run_analysis_file_name name of the .csv file in which
 #' all conducted analyses will be recorded
 #' (default = "exploratory_analyses_run.csv")
-#' @return There will be no output from this function. Rather, the 
+#' @return There will be no output from this function. Rather, the
 #' exploratory analysis tool will open in a browser on the local machine
 #' @examples
 #' if (interactive()) {exploratory(data = mtcars)}
@@ -36,7 +36,7 @@ exploratory <- function(
       "Compare Groups",
       "Multiple Regression",
       "View Data")
-  # set analysis type name that will be used throughout 
+  # set analysis type name that will be used throughout
   # the current function
   analysis_type <-
     c("exploratory_analysis",
@@ -63,7 +63,7 @@ exploratory <- function(
   # dt for sidebar menu
   sidebar_menu_dt <- data.table(
     analysis_type, analysis_type_label, analysis_icon)
-  
+
   # set defaults
   number_of_dynamic_ui <- 10
   number_of_static_ui <- 3
@@ -72,10 +72,10 @@ exploratory <- function(
   number_of_max_filter_vars <- 10
   plot_1_height <- 600
   debounce_ms_for_resetting_loaded_inputs <- 500
-  
+
   # shiny server title
   shiny_update_time <- format(Sys.time(), "%b %d %Y, %H:%M:%S")
-  
+
   # create the saved analysis csv if it doesn't exist
   if (!file.exists(saved_analyses_file_name)) {
     # initialize the csv for saving analysis
@@ -91,7 +91,7 @@ exploratory <- function(
     message(paste0("The following file was created: ",
                    saved_analyses_file_name))
   }
-  
+
   # create the run analysis csv if it doesn't exist
   if (!file.exists(run_analysis_file_name)) {
     # initialize the csv for saving analysis
@@ -108,18 +108,18 @@ exploratory <- function(
     message(paste0("The following file was created: ",
                    run_analysis_file_name))
   }
-  
+
   # import saved analysis csv for the first time
   saved_analysis <-
     fread(saved_analyses_file_name)
-  
+
   # import run analysis csv for the first time
   shiny_run_analysis <-
     fread(run_analysis_file_name)
-  
+
   # var names
   var_names <- c("", names(data))
-  
+
   # functions to be put inside shiny
   one_var_input <- function() {
     selectizeInput(
@@ -313,9 +313,9 @@ exploratory <- function(
   filter_var_ids <-
     paste0("filter_var_", seq_len(number_of_max_filter_vars))
   names_of_all_inputs_for_analysis <- c(
-    "sidebar_menu", "var", "iv", "dv", "mod", "medi", "iv_order", 
-    "include_totals", "function_name", "row_vars", "col_vars", 
-    "cell_var", "sigfig", "saved_analysis_choices", 
+    "sidebar_menu", "var", "iv", "dv", "mod", "medi", "iv_order",
+    "include_totals", "function_name", "row_vars", "col_vars",
+    "cell_var", "sigfig", "saved_analysis_choices",
     "vars_for_outliers", "sigfig", "names_of_filter_vars",
     filter_var_ids
   )
@@ -368,7 +368,7 @@ exploratory <- function(
       uis <- list(renderUI({iv_input(multiple = FALSE)}),
                   renderUI({dv_input(multiple = FALSE)}))
     }
-    if (active_tab %in% c("compare_groups")) {
+    if (active_tab == "compare_groups") {
       uis <- list(renderUI({iv_input(multiple = FALSE)}),
                   renderUI({dv_input(multiple = FALSE)}),
                   renderUI({iv_order_input()}))
@@ -427,7 +427,7 @@ exploratory <- function(
     if (active_tab %in% c("histogram", "scatterplot")) {
       sections <- c(sections, list(renderUI({plotOutput("plot_1")})))
     }
-    if (active_tab %in% c("compare_groups")) {
+    if (active_tab == "compare_groups") {
       sections <- c(sections, list(
         renderUI({plotOutput("plot_1", height = plot_1_height)}),
         renderUI({DT::DTOutput("table_2")}),
@@ -469,7 +469,7 @@ exploratory <- function(
         "row_vars", "col_vars", "cell_var", "function_name")
     }
     if (analysis == "view_data") {
-      inputs_to_save <- c()
+      inputs_to_save <- NULL
     }
     inputs_to_save <- c(
       inputs_to_save, "sidebar_menu", "sigfig",
@@ -751,7 +751,7 @@ exploratory <- function(
               e_corr_r_p <- lapply(seq_len(nrow(e_corr_dt)), function(i) {
                 # increment the progress bar, and update the detail text.
                 incProgress(
-                  1/nrow(e_corr_dt), 
+                  1/nrow(e_corr_dt),
                   detail = paste0(i, " out of ", nrow(e_corr_dt)))
                 # values for iv and dv
                 e_corr_iv_name <- e_corr_dt[["iv"]][i]
@@ -761,7 +761,7 @@ exploratory <- function(
                   "~ ", e_corr_dv_name, " + ", e_corr_iv_name))
                 # correlation function
                 cor_test_result <- tryCatch(
-                  stats::cor.test(formula = e_corr_formula, data = dt01), 
+                  stats::cor.test(formula = e_corr_formula, data = dt01),
                   error = function(e) "error",
                   warning = function(w) "warning")
                 # handle errors or warnings
@@ -781,8 +781,8 @@ exploratory <- function(
                   e_corr_note <- NA_character_
                 }
                 output <- data.table(
-                  r = e_corr_r, 
-                  p = e_corr_p, 
+                  r = e_corr_r,
+                  p = e_corr_p,
                   note = e_corr_note)
                 return(output)
               })
@@ -800,13 +800,13 @@ exploratory <- function(
           setcolorder(e_corr_dt, "analysis_type")
           # round
           for (j in c("r", "p")) {
-            set(e_corr_dt, j = j, 
+            set(e_corr_dt, j = j,
                 value = signif(e_corr_dt[[j]], input$sigfig))
           }
         } else {
           e_corr_dt <- NULL
         }
-        
+
         # exploratory analyses 2: moderation
         if (num_e_iv > 0 & num_e_dv > 0 & num_e_mod > 0) {
           # vars for moderation
@@ -822,7 +822,7 @@ exploratory <- function(
                 seq_len(nrow(e_mod_dt)), function(i) {
                   # increment the progress bar, and update the detail text.
                   incProgress(
-                    1/nrow(e_mod_dt), 
+                    1/nrow(e_mod_dt),
                     detail = paste0(i, " out of ", nrow(e_mod_dt)))
                   # values for iv and dv
                   e_mod_iv_name <- e_mod_dt[["iv"]][i]
@@ -830,7 +830,7 @@ exploratory <- function(
                   e_mod_dv_name <- e_mod_dt[["dv"]][i]
                   # formula for regression
                   formula_2 <- stats::as.formula(paste0(
-                    e_mod_dv_name, " ~ ", e_mod_iv_name, " * ", 
+                    e_mod_dv_name, " ~ ", e_mod_iv_name, " * ",
                     e_mod_mod_name
                   ))
                   # correlation function
@@ -873,7 +873,7 @@ exploratory <- function(
         } else {
           e_mod_dt <- NULL
         }
-        
+
         # exploratory analyses 3: mediation
         if (num_e_iv > 0 & num_e_dv > 0 & num_e_medi > 0) {
           # vars for mediation
@@ -889,7 +889,7 @@ exploratory <- function(
                 seq_len(nrow(e_medi_dt)), function(i) {
                   # increment the progress bar, and update the detail text.
                   incProgress(
-                    1/nrow(e_medi_dt), 
+                    1/nrow(e_medi_dt),
                     detail = paste0(i, " out of ", nrow(e_medi_dt)))
                   # values for iv and dv
                   e_medi_iv_name <- e_medi_dt[["iv"]][i]
@@ -898,7 +898,7 @@ exploratory <- function(
                   # mediation analysis
                   e_medi_indir_eff_p <- tryCatch(
                     mediation_analysis(
-                      data = dt01, 
+                      data = dt01,
                       iv_name = e_medi_iv_name,
                       mediator_name = e_medi_medi_name,
                       dv_name = e_medi_dv_name,
@@ -918,7 +918,7 @@ exploratory <- function(
                     e_medi_note <- NA_character_
                   }
                   output <- data.table(
-                    indirect_effect_p_value = e_medi_indir_eff_p, 
+                    indirect_effect_p_value = e_medi_indir_eff_p,
                     note = e_medi_note)
                   return(output)
                 })
@@ -940,7 +940,7 @@ exploratory <- function(
         } else {
           e_medi_dt <- NULL
         }
-        
+
         # merge data table of exploratory analyses results
         e_result_dt_list <- list(e_corr_dt, e_mod_dt, e_medi_dt)
         # remove null dt
@@ -993,7 +993,7 @@ exploratory <- function(
             neworder = e_result_merged_new_col_order)
           # rename columns
           setnames(e_result_merged, old = c(
-            "analysis_type", "iv", "dv", "mod", "medi", "r", "p", 
+            "analysis_type", "iv", "dv", "mod", "medi", "r", "p",
             "interaction_p_value", "indirect_effect_p_value", "note"
           ), new = c(
             "Analysis Type", "IV", "DV", "Moderator", "Mediator",
@@ -1041,7 +1041,7 @@ exploratory <- function(
               annotate_stats = TRUE))
         }, width = 800, height = plot_1_height)}
       # compare groups
-      if (active_tab %in% c("compare_groups")) {
+      if (active_tab == "compare_groups") {
         if (length(unique(dt01[[input$iv]])) > 20) {
           output$message_to_user_01 <- renderText({
             paste0("The IV has more than 20 levels. ",
@@ -1063,15 +1063,15 @@ exploratory <- function(
           # desc stats by group
           output$table_2 <- DT::renderDataTable(
             kim::desc_stats_by_group(
-              data = dt01, 
-              var_for_stats = input$dv, 
+              data = dt01,
+              var_for_stats = input$dv,
               grouping_vars = input$iv,
               sigfigs = input$sigfig),
             options = list(pageLength = 1000))
           # pairwise comparisons
           output$table_3 <- DT::renderDataTable(
             kim::t_test_pairwise(
-              data = dt01, 
+              data = dt01,
               iv_name = input$iv,
               dv_name = input$dv,
               sigfigs = input$sigfig,
@@ -1104,9 +1104,9 @@ exploratory <- function(
           }
           # merge data table of exploratory analyses results
           rhs_term_list <- list(
-            input$iv, 
-            interact_vars_2_way_1, 
-            interact_vars_2_way_2, 
+            input$iv,
+            interact_vars_2_way_1,
+            interact_vars_2_way_2,
             interact_vars_3_way)
           # remove null dt
           rhs_term_list <- Filter(Negate(is.null), rhs_term_list)
@@ -1130,7 +1130,7 @@ exploratory <- function(
       if (active_tab == "view_data") {
         output$table_1 <- DT::renderDataTable(
           dt01, options = list(pageLength = 1000))}
-      
+
       # record action
       dt11 <- reactive_dt$run_analysis
       # save inputs
@@ -1225,7 +1225,7 @@ exploratory <- function(
     })
     # default tab
     isolate({updateTabItems(
-      inputId = "sidebar_menu", 
+      inputId = "sidebar_menu",
       selected = "exploratory_analysis")})
   }
   # create the app to run
