@@ -22,13 +22,12 @@ knitr::opts_chunk$set(
 
 ### Exploratory Analysis Tool for Behavioral Science Researchers
 
-With one simple command, this tool launches a Shiny App on the
-local machine.
-Using the App's point-and-click interface, drag and drop variables 
-in a data set to categorize them as possible independent, 
-dependent, moderating, or mediating variables. 
-Then run dozens (or hundreds) of analyses instantly to uncover 
-any statistically significant relationships among variables.
+Conduct numerous exploratory analyses in an instant with a 
+point-and-click interface (a Shiny App on the local machine). 
+Drag and drop variables in a data set to categorize them as 
+possible independent, dependent, moderating, or mediating variables. 
+Then run dozens (or hundreds) of analyses with one click to uncover 
+any statistically significant relationships among variables. 
 
 This tool also allows conducting simple follow-up analyses (e.g., 
 correlation and regression) with the point-and-click interface.
