@@ -3,21 +3,6 @@
 
 # ‘exploratory’: an R Package
 
-<!-- badges: start -->
-
-[![CRAN
-checks](https://cranchecks.info/badges/summary/exploratory)](https://cran.r-project.org/web/checks/check_results_exploratory.html)
-[![Travis build
-status](https://travis-ci.com/jinkim3/exploratory.svg?branch=master)](https://travis-ci.com/jinkim3/exploratory)
-[![R build
-status](https://github.com/jinkim3/exploratory/workflows/R-CMD-check/badge.svg)](https://github.com/jinkim3/exploratory/actions)
-
-[![Total
-Downloads](http://cranlogs.r-pkg.org/badges/grand-total/exploratory?color=blue)](https://cran.r-project.org/package=exploratory)
-[![](https://img.shields.io/github/last-commit/jinkim3/exploratory.svg)](https://github.com/jinkim3/exploratory/commits/master)
-[![CodeFactor](https://www.codefactor.io/repository/github/jinkim3/exploratory/badge)](https://www.codefactor.io/repository/github/jinkim3/exploratory)
-<!-- badges: end -->
-
 #### Exploratory Analysis Tool for Behavioral Science Researchers
 
 With one simple command, this tool launches a Shiny App on the local
