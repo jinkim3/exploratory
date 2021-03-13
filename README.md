@@ -7,12 +7,11 @@
 
 [![R build
 status](https://github.com/jinkim3/exploratory/workflows/R-CMD-check/badge.svg)](https://github.com/jinkim3/exploratory/actions)
-
 [![](https://img.shields.io/github/last-commit/jinkim3/exploratory.svg)](https://github.com/jinkim3/exploratory/commits/master)
 [![CodeFactor](https://www.codefactor.io/repository/github/jinkim3/exploratory/badge)](https://www.codefactor.io/repository/github/jinkim3/exploratory)
 <!-- badges: end -->
 
-#### Exploratory Analysis Tool for Behavioral Science Researchers
+### Exploratory Analysis Tool for Behavioral Science Researchers
 
 With one simple command, this tool launches a Shiny App on the local
 machine. Using the App’s point-and-click interface, drag and drop
