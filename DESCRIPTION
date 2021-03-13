@@ -1,6 +1,6 @@
 Package: exploratory
 Title: Exploratory Analysis Tool for Behavioral Science Researchers
-Version: 0.1.6
+Version: 0.1.7
 Authors@R: 
     person(given = "Jin",
            family = "Kim",

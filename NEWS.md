@@ -1,2 +1,3 @@
-# exploratory 0.1.6
-* Added the exploratory function and fixed bugs.
+# exploratory 0.1.7
+* Added new functions including exploratory, read_csv, and 
+update_exploratory, and fixed bugs.
