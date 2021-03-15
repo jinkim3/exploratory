@@ -103,6 +103,6 @@ histogram <- function(
   } else {
     g1 <- g1 + ylab("Count")
   }
-  g1 <- g1 + kim::theme_kim(y_axis_title_vjust = y_axis_title_vjust)
+  g1 <- g1 + theme_kim(y_axis_title_vjust = y_axis_title_vjust)
   return(g1)
 }

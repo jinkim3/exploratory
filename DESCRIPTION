@@ -1,13 +1,14 @@
 Package: exploratory
 Title: Instantly Conduct Numerous Exploratory Analyses with 
     a Point-and-Click Interface
-Version: 0.1.21
+Version: 0.1.34
 Authors@R: 
     person(given = "Jin",
            family = "Kim",
            role = c("aut", "cre"),
            email = "jin.m.kim@yale.edu",
-           comment = c(ORCID = "https://orcid.org/0000-0002-5013-3958"))
+           comment = c(ORCID = "https://orcid.org/0000-0002-5013-3958",
+           website = "https://jinkim.science"))
 Description: Conduct numerous exploratory analyses in an instant with a 
     point-and-click interface. With one simple command, this tool 
     launches a Shiny App on the local machine. Drag and drop variables 
@@ -23,16 +24,18 @@ URL: https://github.com/jinkim3/exploratory
 BugReports: https://github.com/jinkim3/exploratory/issues
 Imports:
     data.table,
+    devtools,
     DT,
     ggplot2,
     ggridges,
     kim,
-    moments,
+    lemon,
+    lm.beta,
     mediation,
+    moments,
     shiny,
-    shinydashboard
-Suggests:
-    devtools
+    shinydashboard,
+    weights
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

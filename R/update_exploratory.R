@@ -35,5 +35,5 @@ update_exploratory <- function(
   devtools::install_github(
       "jinkim3/exploratory", force = force, upgrade = upgrade)
   # attach the package
-  kim::prep("exploratory", silent_if_successful = TRUE)
+  prep("exploratory", silent_if_successful = TRUE)
 }

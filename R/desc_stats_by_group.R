@@ -28,7 +28,7 @@ desc_stats_by_group <- function(
     median = as.numeric(stats::median(get(var_for_stats), na.rm = TRUE)),
     min = as.numeric(min(get(var_for_stats), na.rm = TRUE)),
     max = as.numeric(max(get(var_for_stats), na.rm = TRUE)),
-    se = as.numeric(kim::se_of_mean(get(var_for_stats), na.rm = TRUE)),
+    se = as.numeric(se_of_mean(get(var_for_stats), na.rm = TRUE)),
     ci_95_ll = tryCatch(
       as.numeric(stats::t.test(get(var_for_stats))[["conf.int"]][1]),
       warning = function(w) NA_real_, error = function(e) NA_real_),

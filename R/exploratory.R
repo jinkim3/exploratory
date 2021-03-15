@@ -17,7 +17,7 @@
 #' @examples
 #' if (interactive()) {exploratory(data = mtcars)}
 #' @export
-#' @import data.table ggplot2 kim shiny shinydashboard
+#' @import data.table ggplot2 shiny shinydashboard
 exploratory <- function(
   data = NULL,
   sigfig = 3,
