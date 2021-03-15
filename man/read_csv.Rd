@@ -7,7 +7,7 @@
 read_csv(name = NULL, head = FALSE, ...)
 }
 \arguments{
-\item{name}{a character string of the csv file name wi♠thout the
+\item{name}{a character string of the csv file name without the
 ".csv" extension. For example, if the csv file to read is "myfile.csv",
 enter \code{name = "myfile"}}
 

@@ -2,7 +2,7 @@
 #'
 #' Read a csv file
 #'
-#' @param name a character string of the csv file name wi♠thout the
+#' @param name a character string of the csv file name without the
 #' ".csv" extension. For example, if the csv file to read is "myfile.csv",
 #' enter \code{name = "myfile"}
 #' @param head logical. if \code{head = TRUE}, prints the first five

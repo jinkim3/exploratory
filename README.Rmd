@@ -37,7 +37,7 @@ correlation and regression) with the point-and-click interface.
 Any relationship among variables uncovered using this tool should 
 be tested in follow-up studies. This tool is designed only to 
 facilitate exploratory analyses and should NEVER be used for p-hacking 
-(Simmons, Nelson, & Simonsohn, 2011; Ioannidis 2005).
+(Simmons, Nelson, and Simonsohn, 2011; Ioannidis 2005).
 
 ## Installation
 

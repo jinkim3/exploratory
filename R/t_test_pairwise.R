@@ -69,7 +69,7 @@ t_test_pairwise <- function(
   cohen_d <- vapply(seq_len(nrow(dt02)), function(i) {
     temp <- dt01[iv %in% dt02[i, ]]
     temp[, iv := factor(iv)]
-    cohen_d_from_cohen_textbook(
+    kim::cohen_d_from_cohen_textbook(
       data = temp, iv_name = "iv", dv_name = "dv")},
     FUN.VALUE = numeric(1L))
   # t stat

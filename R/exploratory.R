@@ -1027,7 +1027,7 @@ exploratory <- function(
       # histogram
       if (active_tab == "histogram") {
         output$plot_1 <- renderPlot({
-          kim::histogram(vector = dt01[[input$var]])
+          histogram(vector = dt01[[input$var]])
         }, width = 800, height = plot_1_height)}
       # scatterplot
       if (active_tab == "scatterplot") {
@@ -1054,7 +1054,7 @@ exploratory <- function(
           # histogram by group
           output$plot_1 <- renderPlot({withProgress(
             message = "Generating the plot...",
-            kim::histogram_by_group(
+            histogram_by_group(
               data = dt01,
               iv_name = input$iv,
               dv_name = input$dv,
@@ -1062,7 +1062,7 @@ exploratory <- function(
           )}, width = 800, height = plot_1_height)
           # desc stats by group
           output$table_2 <- DT::renderDataTable(
-            kim::desc_stats_by_group(
+            desc_stats_by_group(
               data = dt01,
               var_for_stats = input$dv,
               grouping_vars = input$iv,
@@ -1070,7 +1070,7 @@ exploratory <- function(
             options = list(pageLength = 1000))
           # pairwise comparisons
           output$table_3 <- DT::renderDataTable(
-            kim::t_test_pairwise(
+            t_test_pairwise(
               data = dt01,
               iv_name = input$iv,
               dv_name = input$dv,

@@ -1,0 +1,8 @@
+id,time,input_type,input_value
+1,Mar 15 2021 020102,iv,cyl
+1,Mar 15 2021 020102,dv,hp
+1,Mar 15 2021 020102,mod,vs
+1,Mar 15 2021 020102,medi,cyl
+1,Mar 15 2021 020102,medi,disp
+1,Mar 15 2021 020102,sidebar_menu,exploratory_analysis
+1,Mar 15 2021 020102,sigfig,3

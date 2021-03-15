@@ -37,7 +37,7 @@ compare_groups <- function(
     data = data, var_for_stats = dv_name, grouping_vars = iv_name,
     sigfigs = sigfigs)
   # pairwise comparison results
-  output_3 <- t_test_pairwise(
+  output_3 <- kim::t_test_pairwise(
     data = data, iv_name = iv_name, dv_name = dv_name,
     sigfigs = sigfigs,
     mann_whitney = mann_whitney,

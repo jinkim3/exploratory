@@ -1,7 +1,7 @@
 Package: exploratory
 Title: Instantly Conduct Numerous Exploratory Analyses with 
     a Point-and-Click Interface
-Version: 0.1.17
+Version: 0.1.21
 Authors@R: 
     person(given = "Jin",
            family = "Kim",
@@ -21,11 +21,13 @@ Description: Conduct numerous exploratory analyses in an instant with a
 License: GPL-3
 URL: https://github.com/jinkim3/exploratory
 BugReports: https://github.com/jinkim3/exploratory/issues
-Imports: 
+Imports:
     data.table,
     DT,
     ggplot2,
+    ggridges,
     kim,
+    moments,
     mediation,
     shiny,
     shinydashboard
