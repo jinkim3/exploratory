@@ -1,7 +1,7 @@
 Package: exploratory
 Title: Instantly Conduct Numerous Exploratory Analyses with 
     a Point-and-Click Interface
-Version: 0.1.35
+Version: 0.1.36
 Authors@R: 
     person(given = "Jin",
            family = "Kim",
@@ -28,7 +28,6 @@ Imports:
     DT,
     ggplot2,
     ggridges,
-    kim,
     lemon,
     lm.beta,
     mediation,

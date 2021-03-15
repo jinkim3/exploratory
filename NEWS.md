@@ -1,4 +1,4 @@
-# exploratory 0.1.35
+# exploratory 0.1.36
 * Added many functions from the package 'kim' and fixed bugs.
 
 # exploratory 0.1.22

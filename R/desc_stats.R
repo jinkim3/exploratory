@@ -50,7 +50,7 @@ desc_stats <- function(
   median <- stats::median(v_no_na)
   min <- min(v_no_na)
   max <- max(v_no_na)
-  se_of_mean <- kim::se_of_mean(v_no_na, notify_na_count = FALSE)
+  se_of_mean <- se_of_mean(v_no_na, notify_na_count = FALSE)
   if (ci == TRUE) {
     ci_95_ll <- tryCatch(
       as.numeric(stats::t.test(v_no_na)[["conf.int"]][1]),
