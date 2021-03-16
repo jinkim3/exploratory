@@ -1,7 +1,7 @@
 Package: exploratory
 Title: Instantly Conduct Numerous Exploratory Analyses with 
     a Point-and-Click Interface
-Version: 0.1.36
+Version: 0.1.41
 Authors@R: 
     person(given = "Jin",
            family = "Kim",

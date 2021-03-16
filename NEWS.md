@@ -1,3 +1,6 @@
+# exploratory 0.1.41
+* Fixed a critical error in the exploratory function.
+
 # exploratory 0.1.36
 * Added many functions from the package 'kim' and fixed bugs.
 
