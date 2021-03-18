@@ -1,5 +1,5 @@
 # update the package when it is loaded
-.onLoad <- function(libname, pkgname) {
+.onAttach <- function(libname, pkgname) {
   # deal with 5 possible cases
   # 1. error in getting the current package version -> update
   # 2. error in getting the github package version -> update
@@ -38,12 +38,21 @@
   if (current_pkg_version != "unknown" &
       github_pkg_version != "unknown" &
       compare_version_result == 0) {
-  } else if (current_pkg_version != "unknown" &
-                github_pkg_version != "unknown" &
-                compare_version_result > 0) {
+    startup_message <- paste0(
+      "Package attached: exploratory v", current_pkg_version,
+      " (same as the most recent version available through GitHub).")
+  } else if (
+    # skip update for case 4
+    current_pkg_version != "unknown" &
+    github_pkg_version != "unknown" &
+    compare_version_result > 0) {
+    startup_message <- paste0(
+      "Package attached: exploratory v", current_pkg_version,
+      " (more recent than the most recent version ",
+      "available through GitHub).")
   } else {
-    # attempt to update for all other cases
-    tryCatch(
-      devtools::install_github("jinkim3/exploratory", upgrade = FALSE))
+    startup_message <- paste0(
+      "\nPackage updated: exploratory v", current_pkg_version)
   }
+  packageStartupMessage(startup_message)
 }
