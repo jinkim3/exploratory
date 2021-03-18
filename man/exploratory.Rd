@@ -30,7 +30,8 @@ all conducted analyses will be recorded
 }
 \value{
 There will be no output from this function. Rather, the
-exploratory analysis tool will open in a browser on the local machine
+exploratory analysis tool (a Shiny App) will open in a browser
+on the local machine.
 }
 \description{
 Launches the exploratory analysis tool in a browser on the local machine

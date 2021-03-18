@@ -5,7 +5,7 @@
 #' @param vector a numeric vector
 #' @param output_type if \code{output_type = "vector"}, return a vector
 #' of descriptive statistics; if \code{output_type = "dt"}, return a
-#' data.table of descriptive statistics
+#' data.table of descriptive statistics (default = "vector")
 #' @param sigfigs number of significant digits to round to (default = 3)
 #' @param ci logical. Should 95% CI be included in the descriptive stats?
 #' (default = TRUE)
@@ -15,7 +15,10 @@
 #' were removed due to missing values. By default, NA count will be printed
 #' only if there are any NA values.
 #' @param print_dt if \code{TRUE}, print the descriptive stats data.table
-#' @return a named numeric vector or a data.table
+#' @return if \code{output_type = "vector"}, the output will be a
+#' named numeric vector of descriptive statistics;
+#' if \code{output_type = "dt"}, the output will be data.table of
+#' descriptive statistics.
 #' @examples
 #' desc_stats(1:100)
 #' desc_stats(1:100, ci = TRUE, pi = TRUE, sigfigs = 2)

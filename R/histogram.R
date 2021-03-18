@@ -18,7 +18,7 @@
 #' @param notify_na_count if \code{TRUE}, notify how many observations
 #' were removed due to missing values. By default, NA count will be printed
 #' only if there are any NA values.
-#' @return a ggplot object
+#' @return the output will be a histogram, a ggplot object.
 #' @examples
 #' histogram(1:100)
 #' histogram(c(1:100, NA))

@@ -42,7 +42,7 @@
 #' range of y values
 #' @param cap_axis_lines logical. Should the axis lines be capped at the
 #' outer tick marks? (default = TRUE)
-#' @return a ggplot object
+#' @return the output will be a scatter plot, a ggplot object.
 #' @examples
 #' \donttest{
 #' scatterplot(data = mtcars, x_var_name = "wt", y_var_name = "mpg")

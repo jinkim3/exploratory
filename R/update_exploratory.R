@@ -17,7 +17,9 @@
 #' For non-interactive sessions "ask" is equivalent to "always".
 #' TRUE and FALSE are also accepted and correspond
 #' to "always" and "never" respectively.
-#'
+#' @return there will be no output from this function. Rather, executing
+#' this function will update the current 'exploratory' package by installing
+#' the most recent version of the package from GitHub.
 #' @examples
 #' \dontrun{
 #' update_exploratory()

@@ -5,8 +5,9 @@
 #' @param sigfigs number of significant digits to round to
 #' @param round_digits_after_decimal round to nth digit after decimal
 #' (alternative to \code{sigfigs})
-#' @examples
-#' multiple_regression(data = mtcars, formula = mpg ~ gear * cyl)
+#' @return the output will be a data.table showing multiple regression
+#' results.
+#' @examples multiple_regression(data = mtcars, formula = mpg ~ gear * cyl)
 #' @export
 multiple_regression <- function(
   data = NULL,

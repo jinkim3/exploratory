@@ -13,7 +13,8 @@
 #' all conducted analyses will be recorded
 #' (default = "exploratory_analyses_run.csv")
 #' @return There will be no output from this function. Rather, the
-#' exploratory analysis tool will open in a browser on the local machine
+#' exploratory analysis tool (a Shiny App) will open in a browser
+#' on the local machine.
 #' @examples
 #' if (interactive()) {exploratory(data = mtcars)}
 #' @export
@@ -1013,11 +1014,15 @@ exploratory <- function(
       }
       # descriptive stats
       if (active_tab == "desc_stats") {
+        req(input$var)
+        desc_stats_dt <- desc_stats(
+          dt01[[input$var]], notify_na_count = FALSE,
+          sigfigs = input$sigfig,
+          print_dt = FALSE)
         output$table_1 <- DT::renderDataTable(
           data.table(
-            statistic = names(desc_stats(dt01[[input$var]])),
-            value = signif(
-              desc_stats(dt01[[input$var]]), input$sigfig)),
+            statistic = names(desc_stats_dt),
+            value = desc_stats_dt),
           options = list(pageLength = 1000))}
       # frequency table
       if (active_tab == "freq_table") {

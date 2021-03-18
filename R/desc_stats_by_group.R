@@ -8,7 +8,8 @@
 #' @param grouping_vars name(s) of grouping variables
 #' @param sigfigs number of significant digits to round to
 #' @param cols_to_round names of columns whose values will be rounded
-#' @return a data.frame
+#' @return the output will be a data.table showing descriptive statistics
+#' of the variable for each of the groups formed by the grouping variables.
 #' @examples
 #' desc_stats_by_group(data = mtcars, var_for_stats = "mpg",
 #' grouping_vars = c("vs", "am"))

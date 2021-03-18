@@ -1,7 +1,6 @@
 Package: exploratory
-Title: Instantly Conduct Numerous Exploratory Analyses with 
-    a Point-and-Click Interface
-Version: 0.1.41
+Title: Conduct Exploratory Analyses with a Point-and-Click Interface
+Version: 0.1.42
 Authors@R: 
     person(given = "Jin",
            family = "Kim",
@@ -18,7 +17,18 @@ Description: Conduct numerous exploratory analyses in an instant with a
     significant relationships among variables. Any relationship 
     thus uncovered should be tested in follow-up studies. 
     This tool is designed only to facilitate exploratory 
-    analyses and should NEVER be used for p-hacking.
+    analyses and should NEVER be used for p-hacking. Many of 
+    the functions used in this package are direct copies of functions
+    in the R Package 'kim' and 'ezr'
+    Selected References:
+    Chang et al. (2021) <https://CRAN.R-project.org/package=shiny>
+    Chang et al. (2018) <https://CRAN.R-project.org/package=shinydashboard>
+    Cohen (1988) <doi:10.4324/9780203771587>
+    Dowle et al. (2021) <https://CRAN.R-project.org/package=data.table>
+    Kim (2021) <doi:10.5281/zenodo.4619237>
+    Kim (2020) <https://CRAN.R-project.org/package=ezr>
+    Wickham et al. (2020) <https://CRAN.R-project.org/package=ggplot2>
+    Tingley et al. (2019) <https://CRAN.R-project.org/package=mediation>
 License: GPL-3
 URL: https://github.com/jinkim3/exploratory
 BugReports: https://github.com/jinkim3/exploratory/issues

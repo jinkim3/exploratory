@@ -14,7 +14,8 @@
 #' tests will not be performed.
 #' @param t_test_stats if \code{t_test_stats = TRUE}, t-test statistic
 #' and degrees of freedom will be included in the output data.table.
-#' @return the output will be a data.table
+#' @return the output will be a data.table showing results of all
+#' pairwise comparisons between levels of the independent variable.
 #' @examples
 #' t_test_pairwise(data = iris, iv_name = "Species", dv_name = "Sepal.Length")
 #' t_test_pairwise(data = iris, iv_name = "Species", dv_name = "Sepal.Length",

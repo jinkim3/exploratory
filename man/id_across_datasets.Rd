@@ -27,6 +27,9 @@ ending ID values in each data set will not be printed.
 If \code{silent = FALSE}, a summary of starting and
 ending ID values in each data set will be printed. (default = FALSE)}
 }
+\value{
+the output will be a list of data.table objects.
+}
 \description{
 Create an ID column in each of the data sets. The ID values will
 span across the data sets.
