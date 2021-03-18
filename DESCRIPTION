@@ -1,6 +1,6 @@
 Package: exploratory
 Title: Conduct Exploratory Analyses with a Point-and-Click Interface
-Version: 0.1.52
+Version: 0.1.53
 Authors@R: 
     person(given = "Jin",
            family = "Kim",
@@ -25,7 +25,7 @@ Description: Conduct numerous exploratory analyses in an instant with a
     Chang et al. (2018) <https://CRAN.R-project.org/package=shinydashboard>.
     Cohen (1988) <doi:10.4324/9780203771587>.
     Dowle et al. (2021) <https://CRAN.R-project.org/package=data.table>.
-    Ioannidis (2005) <doi.org/10.1371/journal.pmed.0020124>
+    Ioannidis (2005) <doi:10.1371/journal.pmed.0020124>
     Kim (2021) <doi:10.5281/zenodo.4619237>.
     Kim (2020) <https://CRAN.R-project.org/package=ezr>.
     Simmons et al. (2011) <doi:10.1177/0956797611417632>
