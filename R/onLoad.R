@@ -53,9 +53,9 @@
     tryCatch(
       devtools::install_github("jinkim3/exploratory", upgrade = FALSE),
       warning = function(w) {
-        message("Package update may have failed.")},
+        packageStartupMessage("Package update may have failed.")},
       error = function(e) {
-        message("Package update failed.")}
+        packageStartupMessage("Package update failed.")}
     )
     startup_message <- paste0(
       "\nPackage updated: exploratory v", current_pkg_version)
