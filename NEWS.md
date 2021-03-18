@@ -1,5 +1,6 @@
-# exploratory 0.1.42
-* Made changes suggested by CRAN package reviewers.
+# exploratory 0.1.43
+* Made changes suggested by CRAN package reviewers 
+(see the file "cran-comments.md").
 
 # exploratory 0.1.41
 * Fixed a critical error in the exploratory function.
