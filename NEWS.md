@@ -1,4 +1,4 @@
-# exploratory 0.1.43
+# exploratory 0.1.44
 * Made changes suggested by CRAN package reviewers 
 (see the file "cran-comments.md").
 
