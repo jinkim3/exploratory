@@ -1,3 +1,6 @@
+# exploratory 0.1.54
+* Updated the README files.
+
 # exploratory 0.1.53
 * Made changes suggested by CRAN package reviewers 
 (see the file "cran-comments.md").
