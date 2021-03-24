@@ -1,6 +1,6 @@
 Package: exploratory
 Title: Conduct Exploratory Analyses with a Point-and-Click Interface
-Version: 0.1.54
+Version: 0.1.55
 Authors@R: 
     person(given = "Jin",
            family = "Kim",
