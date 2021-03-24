@@ -48,7 +48,7 @@
     compare_version_result > 0) {
     startup_message <- paste0(
       "Package attached: exploratory v", current_pkg_version,
-      " (more recent than the most recent version ",
+      " (probably the most recent version ",
       "available through GitHub).")
   } else {
     startup_message <- paste0(
