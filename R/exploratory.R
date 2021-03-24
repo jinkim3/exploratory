@@ -630,7 +630,7 @@ exploratory <- function(
       sidebar_menu_item_to_switch_to <-
         dt01[get("input_type") == "sidebar_menu"][["input_value"]]
       shinydashboard::updateTabItems(
-        session = session,
+        session,
         inputId = "sidebar_menu",
         selected = sidebar_menu_item_to_switch_to)
       # reactive dt for loaded inputs
@@ -1232,6 +1232,7 @@ exploratory <- function(
     })
     # default tab
     isolate({updateTabItems(
+      session,
       inputId = "sidebar_menu",
       selected = "exploratory_analysis")})
   }
