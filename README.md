@@ -4,9 +4,8 @@
 # ‘exploratory’: an R Package
 
 <!-- badges: start -->
+<!--[![CRAN checks](https://cranchecks.info/badges/summary/exploratory)](https://cran.r-project.org/web/checks/check_results_exploratory.html)-->
 
-[![CRAN
-checks](https://cranchecks.info/badges/summary/exploratory)](https://cran.r-project.org/web/checks/check_results_exploratory.html)
 [![R build
 status](https://github.com/jinkim3/exploratory/workflows/R-CMD-check/badge.svg)](https://github.com/jinkim3/exploratory/actions)
 [![](https://img.shields.io/github/last-commit/jinkim3/exploratory.svg)](https://github.com/jinkim3/exploratory/commits/master)
