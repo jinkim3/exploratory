@@ -41,7 +41,7 @@
     startup_message <- paste0(
       "Package attached: exploratory v", current_pkg_version,
       " (same as the most recent version available through GitHub).",
-      "\n\nIf you run into errors, please try restarting R.")
+      "\n\nIf you run into errors, please try restarting R.\n\n")
   } else if (
     # skip update for case 4
     current_pkg_version != "unknown" &
@@ -51,13 +51,13 @@
       "Package attached: exploratory v", current_pkg_version,
       " (probably the most recent version ",
       "available through GitHub).",
-      "\n\nIf you run into errors, please try restarting R.")
+      "\n\nIf you run into errors, please try restarting R.\n\n")
   } else {
     # update for all other cases
     exploratory::update_exploratory()
     startup_message <- paste0(
       "\nPackage updated: exploratory v", current_pkg_version,
-      "\n\nIf you run into errors, please try restarting R.")
+      "\n\nIf you run into errors, please try restarting R.\n\n")
   }
   packageStartupMessage(startup_message)
 }
