@@ -1,7 +1,13 @@
+## Reviewer comments 3
+* .onLoad() attempted to install from github rather than 
+install the version on CRAN, prohibited in the policy.
+  * The .onLoad function was removed.
+  
 ## Reviewer comments 2
 * Please see the problems shown on
 <https://cran.r-project.org/web/checks/check_results_exploratory.html>.
 Please correct before 2021-04-08 to safely retain your package on CRAN.
+  * The problem was fixed.
 
 ## Reviewer comments 1
 * Please reduce the length of the title to less than 65 characters.

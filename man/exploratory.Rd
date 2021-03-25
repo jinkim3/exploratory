@@ -5,7 +5,7 @@
 \title{Launch the exploratory analysis tool}
 \usage{
 exploratory(
-  data = mtcars,
+  data = datasets::mtcars,
   sigfig = 3,
   select_list_max = 1e+05,
   saved_analyses_file_name = "exploratory_analyses_saved.csv",

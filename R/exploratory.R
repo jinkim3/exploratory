@@ -20,7 +20,7 @@
 #' @export
 #' @import data.table ggplot2 shiny shinydashboard
 exploratory <- function(
-  data = mtcars,
+  data = datasets::mtcars,
   sigfig = 3,
   select_list_max = 100000,
   saved_analyses_file_name = "exploratory_analyses_saved.csv",
