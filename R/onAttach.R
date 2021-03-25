@@ -9,7 +9,7 @@
   # in short, update unless the version numbers match
 
   # get version of the currently installed package
-  current_pkg_version <- tryCatch(
+  pkg_ver_at_check_1 <- tryCatch(
     as.character(utils::packageVersion("exploratory")),
     error = function(e) "unknown")
   # github url
@@ -31,33 +31,65 @@
   # compare versions
   compare_version_result <- tryCatch(
     utils::compareVersion(
-      current_pkg_version, github_pkg_version),
+      pkg_ver_at_check_1, github_pkg_version),
     warning = function(w) {999}, # 999 indicates no need for update
     error = function(e) {999})
   # skip update for case 5
-  if (current_pkg_version != "unknown" &
+  if (pkg_ver_at_check_1 != "unknown" &
       github_pkg_version != "unknown" &
       compare_version_result == 0) {
     startup_message <- paste0(
-      "Package attached: exploratory v", current_pkg_version,
+      "Package attached: exploratory v", pkg_ver_at_check_1,
       " (same as the most recent version available through GitHub).",
-      "\n\nIf you run into errors, please try restarting R.\n\n")
+      "\n\nIf you run into errors, please try restarting R.\n")
   } else if (
     # skip update for case 4
-    current_pkg_version != "unknown" &
+    pkg_ver_at_check_1 != "unknown" &
     github_pkg_version != "unknown" &
     compare_version_result > 0) {
     startup_message <- paste0(
-      "Package attached: exploratory v", current_pkg_version,
+      "Package attached: exploratory v", pkg_ver_at_check_1,
       " (probably the most recent version ",
       "available through GitHub).",
-      "\n\nIf you run into errors, please try restarting R.\n\n")
+      "\n\nIf you run into errors, please try restarting R.\n")
   } else {
-    # update for all other cases
-    exploratory::update_exploratory()
-    startup_message <- paste0(
-      "\nPackage updated: exploratory v", current_pkg_version,
-      "\n\nIf you run into errors, please try restarting R.\n\n")
+    # update, if possible, for all other cases
+    update_result <- tryCatch(
+      {
+        # unload the package exploratory
+        while ("package:exploratory" %in% search()) {
+          unloadNamespace("exploratory")
+        }
+        # force update?
+        devtools::install_github(
+          "jinkim3/exploratory", force = FALSE, upgrade = FALSE)
+        # attach the package
+        suppressMessages(library("exploratory"))
+        # if updating was successful, indicate so
+        "success"
+      },
+      warning = function(w) {return("warning_while_updating")},
+      error = function(e) {return("error_while_updating")})
+    # check the package version again
+    pkg_ver_at_check_2 <- tryCatch(
+      as.character(utils::packageVersion("exploratory")),
+      error = function(e) "unknown")
+    # if update was successful
+    if (update_result == "success") {
+      startup_message <- paste0(
+        "\nPackage updated. Current version: ", pkg_ver_at_check_2,
+        "\n\nIf you run into errors, please try restarting R.")
+    } else {
+      # if there was a problem with updating
+      startup_message <- paste0(
+        "\nPackage update may have failed.\n",
+        "Current version: ",
+        pkg_ver_at_check_2, "\n",
+        "Most recent version available on GitHub: ",
+        github_pkg_version,
+        "\n\nIf you run into errors, please try updating the package ",
+        'with the command "update_exploratory()" and restarting R.\n')
+    }
   }
   packageStartupMessage(startup_message)
 }

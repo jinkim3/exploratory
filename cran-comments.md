@@ -1,3 +1,8 @@
+## Reviewer comments 2
+* Please see the problems shown on
+<https://cran.r-project.org/web/checks/check_results_exploratory.html>.
+Please correct before 2021-04-08 to safely retain your package on CRAN.
+
 ## Reviewer comments 1
 * Please reduce the length of the title to less than 65 characters.
   * The title has been changed.

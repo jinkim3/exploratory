@@ -1,4 +1,4 @@
-# exploratory 0.1.62
+# exploratory 0.1.63
 * Fixing bugs preventing the launch in mac OS.
 
 # exploratory 0.1.54
