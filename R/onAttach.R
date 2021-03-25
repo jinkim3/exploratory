@@ -54,7 +54,8 @@
     # update for all other cases
     exploratory::update_exploratory()
     startup_message <- paste0(
-      "\nPackage updated: exploratory v", current_pkg_version)
+      "\nPackage updated: exploratory v", current_pkg_version,
+      "\n\nIf you run into any errors, please try restarting R.")
   }
   packageStartupMessage(startup_message)
 }
