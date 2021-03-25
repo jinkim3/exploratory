@@ -34,8 +34,7 @@ update_exploratory <- function(
     unloadNamespace("exploratory")
   }
   # if source is github
-  devtools::install_github(
-      "jinkim3/exploratory", force = force, upgrade = upgrade)
+  remotes::install_github("jinkim3/exploratory")
   # attach the package
   exploratory::prep("exploratory", silent_if_successful = TRUE)
 }

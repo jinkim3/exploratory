@@ -46,8 +46,8 @@ You can also install the development version from [exploratory on
 GitHub](https://github.com/jinkim3/exploratory) with:
 
 ``` r
-install.packages("devtools")
-devtools::install_github("jinkim3/exploratory")
+install.packages("remotes")
+remotes::install_github("jinkim3/exploratory")
 ```
 
 If you run into errors while using the package, try updating the package
