@@ -1,5 +1,5 @@
-# exploratory 0.1.60
-* Fixing○ bugs preventing the launch in mac OS.
+# exploratory 0.1.61
+* Fixing bugs preventing the launch in mac OS.
 
 # exploratory 0.1.54
 * Updated the README files.
