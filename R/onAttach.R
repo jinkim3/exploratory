@@ -51,6 +51,8 @@
       " (probably the most recent version ",
       "available through GitHub).")
   } else {
+    # update for all other cases
+    exploratory::update_exploratory()
     startup_message <- paste0(
       "\nPackage updated: exploratory v", current_pkg_version)
   }
