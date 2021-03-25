@@ -1,4 +1,4 @@
-# exploratory 0.2.1
+# exploratory 0.2.2
 * Fixed errors noted by CRAN package reviewers
 * Fixed bugs preventing the launch in mac OS.
 

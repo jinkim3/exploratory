@@ -54,13 +54,11 @@
       "\n\nIf you run into errors, please try restarting R.\n")
   } else {
     startup_message <- paste0(
-      "\nPackage update may have failed.\n",
-      "Current version: ",
-      current_pkg_version, "\n",
-      "Most recent version available on GitHub: ",
-      github_pkg_version,
-      "\n\nIf you run into errors, please try updating the package ",
-      'with the command "update_exploratory()" and restarting R.\n')
+      "Package attached: exploratory v", current_pkg_version,
+      '\n\nPlease update the package with the command `update_exploratory()`',
+      " and restart R\n\n",
+      "Current version: ", current_pkg_version, "\n",
+      "Most recent version available on GitHub: ", github_pkg_version)
   }
   packageStartupMessage(startup_message)
 }
