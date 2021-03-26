@@ -1,4 +1,4 @@
-# exploratory 0.2.13
+# exploratory 0.2.15
 * Fixed errors noted by CRAN package reviewers
 * Fixed bugs preventing the launch in mac OS
 * Added the file upload sidebar menu for exploratory()

@@ -1035,15 +1035,13 @@ exploratory <- function(
           # merge the data tables above
           e_result_merged <- merge_data_table_list(
             dt_list = e_result_dt_list, id = "id")
-          # remove the id column
-          e_result_merged[, id := NULL]
           # a column that combines p values
           e_result_merged[["p_value_of_interest"]] <- fcase(
-            analysis == "correlation",
+            e_result_merged[["analysis"]] == "correlation",
             e_result_merged[["corr_p"]],
-            analysis == "moderation",
+            e_result_merged[["analysis"]] == "moderation",
             e_result_merged[["interaction_p_value"]],
-            analysis == "mediation",
+            e_result_merged[["analysis"]] == "mediation",
             e_result_merged[["indirect_effect_p_value"]]
           )
           # var types for correlation
@@ -1080,18 +1078,18 @@ exploratory <- function(
             "p_value_of_interest", e_other_cols_ordered)
           # new column order
           e_result_merged_new_col_order <- Reduce(f = c, x = list(
-            "analysis", e_var_types_ordered, e_other_cols_ordered))
+            "id", "analysis", e_var_types_ordered, e_other_cols_ordered))
           # reorder columns
           setcolorder(
             e_result_merged,
             neworder = e_result_merged_new_col_order)
           # rename columns
           setnames(e_result_merged, old = c(
-            "analysis", "iv", "dv", "mod", "medi", "p_value_of_interest",
-            "r", "corr_p",
+            "id", "analysis", "iv", "dv", "mod", "medi",
+            "p_value_of_interest", "r", "corr_p",
             "interaction_p_value", "indirect_effect_p_value", "note"
           ), new = c(
-            "Analysis Type", "IV", "DV", "Moderator", "Mediator",
+            "ID", "Analysis", "IV", "DV", "Moderator", "Mediator",
             "p of Interest",
             "r", "Correlation p", "Interaction p", "Indirect Effect p",
             "Note"), skip_absent = TRUE)
