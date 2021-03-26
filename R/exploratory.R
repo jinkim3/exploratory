@@ -827,7 +827,7 @@ exploratory <- function(
                 }
                 output <- data.table(
                   r = e_corr_r,
-                  p = e_corr_p,
+                  corr_p = e_corr_p,
                   note = e_corr_note)
                 return(output)
               })
@@ -841,10 +841,10 @@ exploratory <- function(
           # add var names
           e_corr_dt <- data.table(e_corr_dt, e_corr_r_p_dt)
           # add the analysis type column at the beginning
-          e_corr_dt[, action_type := "correlation"]
-          setcolorder(e_corr_dt, "action_type")
+          e_corr_dt[, analysis := "correlation"]
+          setcolorder(e_corr_dt, "analysis")
           # round
-          for (j in c("r", "p")) {
+          for (j in c("r", "corr_p")) {
             set(e_corr_dt, j = j,
                 value = signif(e_corr_dt[[j]], input$sigfig))
           }
@@ -911,8 +911,8 @@ exploratory <- function(
           # add var names
           e_mod_dt <- data.table(e_mod_dt, e_mod_int_p_dt)
           # add the analysis type column at the beginning
-          e_mod_dt[, action_type := "moderation"]
-          setcolorder(e_mod_dt, "action_type")[]
+          e_mod_dt[, analysis := "moderation"]
+          setcolorder(e_mod_dt, "analysis")[]
           # round
           e_mod_dt[["interaction_p_value"]] <- signif(
             e_mod_dt[["interaction_p_value"]], input$sigfig)
@@ -978,8 +978,8 @@ exploratory <- function(
           # add var names
           e_medi_dt <- data.table(e_medi_dt, e_medi_indir_eff_p_dt)
           # add the analysis type column at the beginning
-          e_medi_dt[, action_type := "mediation"]
-          setcolorder(e_medi_dt, "action_type")[]
+          e_medi_dt[, analysis := "mediation"]
+          setcolorder(e_medi_dt, "analysis")[]
           # round
           e_medi_dt[["indirect_effect_p_value"]] <- signif(
             e_medi_dt[["indirect_effect_p_value"]], input$sigfig)
@@ -1001,22 +1001,28 @@ exploratory <- function(
             dt_list = e_result_dt_list, id = "id")
           # remove the id column
           e_result_merged[, id := NULL]
+          # a column that combines p values
+          e_result_merged[, p_value_of_interest := fcase(
+            analysis == "correlation", corr_p,
+            analysis == "moderation", interaction_p_value,
+            analysis == "mediation", indirect_effect_p_value
+          )]
           # var types for correlation
-          if ("correlation" %in% e_result_merged[, action_type]) {
+          if ("correlation" %in% e_result_merged[, analysis]) {
             e_corr_vars <- c("iv", "dv")
-            e_corr_other_cols <- c("r", "p")
+            e_corr_other_cols <- c("r", "corr_p")
           } else {
             e_corr_vars <- e_corr_other_cols <- NULL
           }
           # var types for moderation
-          if ("moderation" %in% e_result_merged[, action_type]) {
+          if ("moderation" %in% e_result_merged[, analysis]) {
             e_mod_vars <- c("iv", "mod", "dv")
             e_mod_other_cols <- "interaction_p_value"
           } else {
             e_mod_vars <- e_mod_other_cols <- NULL
           }
           # var types for mediation
-          if ("mediation" %in% e_result_merged[, action_type]) {
+          if ("mediation" %in% e_result_merged[, analysis]) {
             e_medi_vars <- c("iv", "medi", "dv")
             e_medi_other_cols <- "indirect_effect_p_value"
           } else {
@@ -1030,24 +1036,30 @@ exploratory <- function(
           e_other_cols <- list(
             e_corr_other_cols, e_mod_other_cols, e_medi_other_cols)
           e_other_cols_ordered <- Reduce(f = union, x = e_other_cols)
+          # insert the key p value column
+          e_other_cols_ordered <- c(
+            "p_value_of_interest", e_other_cols_ordered)
           # new column order
           e_result_merged_new_col_order <- Reduce(f = c, x = list(
-            "action_type", e_var_types_ordered, e_other_cols_ordered))
+            "analysis", e_var_types_ordered, e_other_cols_ordered))
           # reorder columns
           setcolorder(
             e_result_merged,
             neworder = e_result_merged_new_col_order)
           # rename columns
           setnames(e_result_merged, old = c(
-            "action_type", "iv", "dv", "mod", "medi", "r", "p",
+            "analysis", "iv", "dv", "mod", "medi", "p_value_of_interest",
+            "r", "corr_p",
             "interaction_p_value", "indirect_effect_p_value", "note"
           ), new = c(
             "Analysis Type", "IV", "DV", "Moderator", "Mediator",
+            "p of Interest",
             "r", "Correlation p", "Interaction p", "Indirect Effect p",
             "Note"), skip_absent = TRUE)
           # output
           output$table_1 <- DT::renderDataTable(
             e_result_merged,
+            filter = "top",
             options = list(pageLength = 1000))
         } else {
           showNotification(paste0(
@@ -1067,12 +1079,14 @@ exploratory <- function(
           data.table(
             statistic = names(desc_stats_dt),
             value = desc_stats_dt),
+          filter = "top",
           options = list(pageLength = 1000))}
       # frequency table
       if (active_tab == "freq_table") {
         output$table_1 <- DT::renderDataTable(
           tabulate_vector(
             dt01[[input$var]], sigfigs = input$sigfig),
+          filter = "top",
           options = list(pageLength = 1000))}
       # histogram
       if (active_tab == "histogram") {
@@ -1117,6 +1131,7 @@ exploratory <- function(
               var_for_stats = input$dv,
               grouping_vars = input$iv,
               sigfigs = input$sigfig),
+            filter = "top",
             options = list(pageLength = 1000))
           # pairwise comparisons
           output$table_3 <- DT::renderDataTable(
@@ -1127,6 +1142,7 @@ exploratory <- function(
               sigfigs = input$sigfig,
               mann_whitney = TRUE,
               t_test_stats = TRUE),
+            filter = "top",
             options = list(pageLength = 1000))
         }
       }
@@ -1174,12 +1190,16 @@ exploratory <- function(
           names(reg_table) <- c(
             "Variable", "B", "SE B", "Std. Beta", "t-stat", "p")
           reg_table
-        }, options = list(pageLength = 1000))
+        },
+        filter = "top",
+        options = list(pageLength = 1000))
       }
       # view data, if active tab is "upload data" or "view data"
       if (active_tab %in% c("upload_data", "view_data")) {
         output$table_1 <- DT::renderDataTable(
-          dt01, options = list(pageLength = 1000))}
+          dt01,
+          filter = "top",
+          options = list(pageLength = 1000))}
 
       # record action
       dt11 <- reactive_dt$run_analysis
@@ -1249,7 +1269,9 @@ exploratory <- function(
       output$saved_analysis_summary_dt <- DT::renderDataTable({
         data.table(input_type = new_input_type,
                    input_value = new_input_value)
-      }, options = list(pageLength = 100))
+      },
+      filter = "top",
+      options = list(pageLength = 100))
       # id, time, ip, etc
       id <- c(dt01$id,
               rep(max(c(dt01$id, 0)) + 1,
