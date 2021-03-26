@@ -3,38 +3,32 @@
 #' Updates the current package 'exploratory' by installing the
 #' most recent version of the package from GitHub
 #'
-#' @param force logical. If \code{force = TRUE}, forces the installation
-#' even if the package 'exploratory' from the source has not changed since
-#' last install.
-#' @param upgrade input for \code{upgrade} argument to be passed on to
-#' \code{remotes::install_github}.
-#' The default value is \code{FALSE}.
-#' An input could be \code{TRUE} or \code{FALSE}, but it could also
-#' be one of the following: "default", "ask", "always", or "never".
-#' "default" respects the value of the R_REMOTES_UPGRADE
-#' environment variable if set, and falls back to "ask" if unset.
-#' "ask" prompts the user for which out of date packages to upgrade.
-#' For non-interactive sessions "ask" is equivalent to "always".
-#' TRUE and FALSE are also accepted and correspond
-#' to "always" and "never" respectively.
+#' @param confirm logical. If \code{confirm = TRUE}, the user will
+#' need to confirm the update. If \code{confirm = FALSE}, the confirmation
+#' step will be skipped. By default, \code{confirm = TRUE}.
 #' @return there will be no output from this function. Rather, executing
 #' this function will update the current 'exploratory' package by installing
 #' the most recent version of the package from GitHub.
 #' @examples
 #' \dontrun{
-#' update_exploratory()
+#' if (interactive()) {update_exploratory()}
 #' }
 #'
 #' @export
 update_exploratory <- function(
-  force = FALSE,
-  upgrade = FALSE) {
-  # unload the package exploratory
-  while ("package:exploratory" %in% search()) {
-    unloadNamespace("exploratory")
+  confirm = TRUE) {
+  # confirm update
+  user_reply <- menu(
+    c("Yes.", "No."),
+    title = "\nDo you want to try to update the package 'exploratory'?")
+  if (user_reply == 1) {
+    # unload the package exploratory
+    while ("package:exploratory" %in% search()) {
+      unloadNamespace("exploratory")
+    }
+    # if source is github
+    remotes::install_github("jinkim3/exploratory")
+    # attach the package
+    exploratory::prep("exploratory", silent_if_successful = TRUE)
   }
-  # if source is github
-  remotes::install_github("jinkim3/exploratory")
-  # attach the package
-  exploratory::prep("exploratory", silent_if_successful = TRUE)
 }

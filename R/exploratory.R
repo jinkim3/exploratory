@@ -789,6 +789,18 @@ exploratory <- function(
             iv = rep(e_iv, each = num_e_dv),
             dv = rep(e_dv, times = num_e_iv)
           )
+          # count number of distinct vars in the model
+          e_corr_dt[["num_of_distinct_vars_in_model"]] <- apply(
+            e_corr_dt, 1, function(x) length(unique(x)))
+          # maximum number of distinct vars in all models
+          corr_model_distin_vars_max <- max(e_corr_dt[[
+            "num_of_distinct_vars_in_model"]], na.rm = TRUE)
+          # valid models only (models with 2 distinct vars)
+          e_corr_dt <- e_corr_dt[
+            num_of_distinct_vars_in_model ==
+              corr_model_distin_vars_max]
+          # delete the column indicating number of distinct vars in the model
+          e_corr_dt[, num_of_distinct_vars_in_model := NULL]
           # report progress
           withProgress(
             message = "Conducting correlation analyses: ", value = 0, {
@@ -859,6 +871,18 @@ exploratory <- function(
             iv = rep(e_iv, each = num_e_dv * num_e_mod),
             mod = rep(rep(e_mod, each = num_e_dv), times = num_e_iv),
             dv = rep(e_dv, times = num_e_iv * num_e_mod))
+          # count number of distinct vars in the model
+          e_mod_dt[["num_of_distinct_vars_in_model"]] <- apply(
+            e_mod_dt, 1, function(x) length(unique(x)))
+          # maximum number of distinct vars in all models
+          mod_model_distin_vars_max <- max(e_mod_dt[[
+            "num_of_distinct_vars_in_model"]], na.rm = TRUE)
+          # valid models only (models with 3 distinct vars)
+          e_mod_dt <- e_mod_dt[
+            num_of_distinct_vars_in_model ==
+              mod_model_distin_vars_max]
+          # delete the column indicating number of distinct vars in the model
+          e_mod_dt[, num_of_distinct_vars_in_model := NULL]
           # report progress
           withProgress(
             message = "Conducting moderation analyses: ", value = 0, {
@@ -927,6 +951,18 @@ exploratory <- function(
             iv = rep(e_iv, each = num_e_dv * num_e_medi),
             medi = rep(rep(e_medi, each = num_e_dv), times = num_e_iv),
             dv = rep(e_dv, times = num_e_iv * num_e_medi))
+          # count number of distinct vars in the model
+          e_medi_dt[["num_of_distinct_vars_in_model"]] <- apply(
+            e_medi_dt, 1, function(x) length(unique(x)))
+          # maximum number of distinct vars in all models
+          medi_model_distin_vars_max <- max(e_medi_dt[[
+            "num_of_distinct_vars_in_model"]], na.rm = TRUE)
+          # valid models only (models with 2 distinct vars)
+          e_medi_dt <- e_medi_dt[
+            num_of_distinct_vars_in_model ==
+              medi_model_distin_vars_max]
+          # delete the column indicating number of distinct vars in the model
+          e_medi_dt[, num_of_distinct_vars_in_model := NULL]
           # report progress
           withProgress(
             message = "Conducting mediation analyses: ", value = 0, {

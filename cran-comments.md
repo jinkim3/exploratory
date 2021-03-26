@@ -1,7 +1,7 @@
 ## Reviewer comments 3
 * .onLoad() attempted to install from github rather than 
 install the version on CRAN, prohibited in the policy.
-  * The .onLoad function was removed.
+  * This problematic .onLoad function was removed.
   
 ## Reviewer comments 2
 * Please see the problems shown on
