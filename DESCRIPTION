@@ -1,6 +1,6 @@
 Package: exploratory
 Title: Conduct Exploratory Analyses with a Point-and-Click Interface
-Version: 0.2.8
+Version: 0.2.9
 Authors@R: 
     person(given = "Jin",
            family = "Kim",
@@ -31,7 +31,7 @@ Description: Conduct numerous exploratory analyses in an instant with a
     Tingley et al. (2019) <https://CRAN.R-project.org/package=mediation>.
     Wickham et al. (2020) <https://CRAN.R-project.org/package=ggplot2>.
 License: GPL-3
-URL: https://github.com/jinkim3/exploratory https://jinkim.science
+URL: https://exploratoryonly.com
 BugReports: https://github.com/jinkim3/exploratory/issues
 Imports:
     data.table,
