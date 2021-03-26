@@ -797,10 +797,10 @@ exploratory <- function(
             "num_of_distinct_vars_in_model"]], na.rm = TRUE)
           # valid models only (models with 2 distinct vars)
           e_corr_dt <- e_corr_dt[
-            num_of_distinct_vars_in_model ==
+            e_corr_dt[["num_of_distinct_vars_in_model"]] ==
               corr_model_distin_vars_max]
           # delete the column indicating number of distinct vars in the model
-          e_corr_dt[, num_of_distinct_vars_in_model := NULL]
+          e_corr_dt[["num_of_distinct_vars_in_model"]] <- NULL
           # report progress
           withProgress(
             message = "Conducting correlation analyses: ", value = 0, {
@@ -853,7 +853,7 @@ exploratory <- function(
           # add var names
           e_corr_dt <- data.table(e_corr_dt, e_corr_r_p_dt)
           # add the analysis type column at the beginning
-          e_corr_dt[, analysis := "correlation"]
+          e_corr_dt[["analysis"]] <- "correlation"
           setcolorder(e_corr_dt, "analysis")
           # round
           for (j in c("r", "corr_p")) {
@@ -879,10 +879,10 @@ exploratory <- function(
             "num_of_distinct_vars_in_model"]], na.rm = TRUE)
           # valid models only (models with 3 distinct vars)
           e_mod_dt <- e_mod_dt[
-            num_of_distinct_vars_in_model ==
+            e_mod_dt[["num_of_distinct_vars_in_model"]] ==
               mod_model_distin_vars_max]
           # delete the column indicating number of distinct vars in the model
-          e_mod_dt[, num_of_distinct_vars_in_model := NULL]
+          e_mod_dt[["num_of_distinct_vars_in_model"]] <- NULL
           # report progress
           withProgress(
             message = "Conducting moderation analyses: ", value = 0, {
@@ -935,7 +935,7 @@ exploratory <- function(
           # add var names
           e_mod_dt <- data.table(e_mod_dt, e_mod_int_p_dt)
           # add the analysis type column at the beginning
-          e_mod_dt[, analysis := "moderation"]
+          e_mod_dt[["analysis"]] <- "moderation"
           setcolorder(e_mod_dt, "analysis")[]
           # round
           e_mod_dt[["interaction_p_value"]] <- signif(
@@ -957,12 +957,12 @@ exploratory <- function(
           # maximum number of distinct vars in all models
           medi_model_distin_vars_max <- max(e_medi_dt[[
             "num_of_distinct_vars_in_model"]], na.rm = TRUE)
-          # valid models only (models with 2 distinct vars)
+          # valid models only (models with 3 distinct vars)
           e_medi_dt <- e_medi_dt[
-            num_of_distinct_vars_in_model ==
+            e_medi_dt[["num_of_distinct_vars_in_model"]] ==
               medi_model_distin_vars_max]
           # delete the column indicating number of distinct vars in the model
-          e_medi_dt[, num_of_distinct_vars_in_model := NULL]
+          e_medi_dt[["num_of_distinct_vars_in_model"]] <- NULL
           # report progress
           withProgress(
             message = "Conducting mediation analyses: ", value = 0, {
@@ -1014,7 +1014,7 @@ exploratory <- function(
           # add var names
           e_medi_dt <- data.table(e_medi_dt, e_medi_indir_eff_p_dt)
           # add the analysis type column at the beginning
-          e_medi_dt[, analysis := "mediation"]
+          e_medi_dt[["analysis"]] <- "mediation"
           setcolorder(e_medi_dt, "analysis")[]
           # round
           e_medi_dt[["indirect_effect_p_value"]] <- signif(
@@ -1038,27 +1038,30 @@ exploratory <- function(
           # remove the id column
           e_result_merged[, id := NULL]
           # a column that combines p values
-          e_result_merged[, p_value_of_interest := fcase(
-            analysis == "correlation", corr_p,
-            analysis == "moderation", interaction_p_value,
-            analysis == "mediation", indirect_effect_p_value
-          )]
+          e_result_merged[["p_value_of_interest"]] <- fcase(
+            analysis == "correlation",
+            e_result_merged[["corr_p"]],
+            analysis == "moderation",
+            e_result_merged[["interaction_p_value"]],
+            analysis == "mediation",
+            e_result_merged[["indirect_effect_p_value"]]
+          )
           # var types for correlation
-          if ("correlation" %in% e_result_merged[, analysis]) {
+          if ("correlation" %in% e_result_merged[["analysis"]]) {
             e_corr_vars <- c("iv", "dv")
             e_corr_other_cols <- c("r", "corr_p")
           } else {
             e_corr_vars <- e_corr_other_cols <- NULL
           }
           # var types for moderation
-          if ("moderation" %in% e_result_merged[, analysis]) {
+          if ("moderation" %in% e_result_merged[["analysis"]]) {
             e_mod_vars <- c("iv", "mod", "dv")
             e_mod_other_cols <- "interaction_p_value"
           } else {
             e_mod_vars <- e_mod_other_cols <- NULL
           }
           # var types for mediation
-          if ("mediation" %in% e_result_merged[, analysis]) {
+          if ("mediation" %in% e_result_merged[["analysis"]]) {
             e_medi_vars <- c("iv", "medi", "dv")
             e_medi_other_cols <- "indirect_effect_p_value"
           } else {

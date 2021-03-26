@@ -18,7 +18,7 @@
 update_exploratory <- function(
   confirm = TRUE) {
   # confirm update
-  user_reply <- menu(
+  user_reply <- utils::menu(
     c("Yes.", "No."),
     title = "\nDo you want to try to update the package 'exploratory'?")
   if (user_reply == 1) {
