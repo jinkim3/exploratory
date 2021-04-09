@@ -1,4 +1,4 @@
-# exploratory 0.3.2
+# exploratory 0.3.3
 * New submission to CRAN as the previous version seems to have been lost 
 in the submission process
 * Fixed bugs
