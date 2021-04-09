@@ -906,8 +906,8 @@ exploratory <- function(
                   e_mod_int_p <- tryCatch(
                     summary(stats::lm(
                       formula = formula_2, data = dt01))[[
-                      "coefficients"]][paste0(
-                        e_mod_iv_name, ":", e_mod_mod_name), "Pr(>|t|)"],
+                        "coefficients"]][paste0(
+                          e_mod_iv_name, ":", e_mod_mod_name), "Pr(>|t|)"],
                     error = function(e) "error",
                     warning = function(w) "warning")
                   # handle errors or warnings

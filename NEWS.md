@@ -1,3 +1,8 @@
+# exploratory 0.3.1
+* New submission to CRAN as the previous version seems to have been lost 
+in the submission process
+* Fixed bugs
+
 # exploratory 0.2.16
 * Fixed errors noted by CRAN package reviewers
 * Fixed bugs preventing the launch in mac OS

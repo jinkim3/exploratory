@@ -22,7 +22,7 @@ desc_stats_by_group <- function(
   sigfigs = NULL,
   cols_to_round = NULL) {
   dt1 <- setDT(copy(data))
-  dt2 <- dt1[, list(
+  dt2 <- dt1[!is.na(get(var_for_stats)), list(
     n = length(get(var_for_stats)),
     mean = as.numeric(mean(get(var_for_stats), na.rm = TRUE)),
     sd = as.numeric(stats::sd(get(var_for_stats), na.rm = TRUE)),
@@ -48,10 +48,8 @@ desc_stats_by_group <- function(
           stats::sd(get(var_for_stats), na.rm = TRUE) *
           stats::qt(0.975, length(get(var_for_stats)) - 1)),
       warning = function(w) NA_real_, error = function(e) NA_real_),
-    skewness = as.numeric(
-      moments::skewness(get(var_for_stats), na.rm = TRUE)),
-    kurtosis = as.numeric(
-      moments::kurtosis(get(var_for_stats), na.rm = TRUE))),
+    skewness = as.numeric(kim::skewness(get(var_for_stats))),
+    kurtosis = as.numeric(kim::kurtosis(get(var_for_stats)))),
     keyby = grouping_vars]
   # round to significant digits
   if (!is.null(sigfigs)) {
