@@ -86,7 +86,7 @@ t_test_pairwise <- function(
   cohen_d <- vapply(seq_len(nrow(dt02)), function(i) {
     temp <- dt01[iv %in% dt02[i, ]]
     temp[, iv := factor(iv)]
-    kim::cohen_d_from_cohen_textbook(
+    exploratory::cohen_d_from_cohen_textbook(
       data = temp, iv_name = "iv", dv_name = "dv")},
     FUN.VALUE = numeric(1L))
   # t stat
@@ -123,14 +123,14 @@ t_test_pairwise <- function(
       output,
       t_test_df = round(t_test_df, t_test_df_decimals),
       t_test_stat = signif(t_test_stat, sigfigs),
-      t_test_p_value = kim::pretty_round_p_value(t_test_p_value),
+      t_test_p_value = exploratory::pretty_round_p_value(t_test_p_value),
       bonferroni_signif_for_t_test = bonferroni_signif_for_t_test)
   }
   # add the rest
   output <- data.table(
     output,
     cohen_d = signif(cohen_d, sigfigs),
-    t_test_p_value = kim::pretty_round_p_value(t_test_p_value),
+    t_test_p_value = exploratory::pretty_round_p_value(t_test_p_value),
     bonferroni_signif_for_t_test = bonferroni_signif_for_t_test)
   # mann whitney
   if (mann_whitney == TRUE) {
@@ -144,7 +144,7 @@ t_test_pairwise <- function(
       mann_whitney_p_value < .05 / nrow(dt02), "Yes", "No")
     output <- data.table(
       output,
-      mann_whitney_p_value = kim::pretty_round_p_value(
+      mann_whitney_p_value = exploratory::pretty_round_p_value(
         mann_whitney_p_value),
       bonferroni_signif_for_mann_whitney)
   }

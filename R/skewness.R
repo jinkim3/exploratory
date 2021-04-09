@@ -17,13 +17,13 @@
 #' @return a numeric value, i.e., skewness of the given vector
 #' @examples
 #' # calculate the adjusted Fisher-Pearson standardized moment coefficient
-#' kim::skewness(c(1, 2, 3, 4, 5, 10))
+#' exploratory::skewness(c(1, 2, 3, 4, 5, 10))
 #' # calculate the traditional Fisher-Pearson coefficient of skewness
-#' kim::skewness(c(1, 2, 3, 4, 5, 10), type = "traditional")
+#' exploratory::skewness(c(1, 2, 3, 4, 5, 10), type = "traditional")
 #' # compare with skewness from 'moments' package
 #' moments::skewness(c(1, 2, 3, 4, 5, 10))
 #' # calculate the Pearson 2 skewness coefficient
-#' kim::skewness(c(1, 2, 3, 4, 5, 10), type = "pearson_2")
+#' exploratory::skewness(c(1, 2, 3, 4, 5, 10), type = "pearson_2")
 #' @export
 skewness <- function(
   vector = NULL,

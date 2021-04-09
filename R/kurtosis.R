@@ -14,10 +14,10 @@
 #' @examples
 #' # calculate the unbiased estimator (e.g., kurtosis value that
 #' # Excel 2016 will produce)
-#' kim::kurtosis(c(1, 2, 3, 4, 5, 10))
+#' exploratory::kurtosis(c(1, 2, 3, 4, 5, 10))
 #' # calculate the biased estimator (e.g., kurtosis value that
 #' # R Package 'moments' will produce)
-#' kim::kurtosis(c(1, 2, 3, 4, 5, 10), unbiased = FALSE)
+#' exploratory::kurtosis(c(1, 2, 3, 4, 5, 10), unbiased = FALSE)
 #' # compare with kurtosis from 'moments' package
 #' moments::kurtosis(c(1, 2, 3, 4, 5, 10))
 #' @export
