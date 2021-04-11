@@ -1,4 +1,4 @@
-# exploratory 0.3.5
+# exploratory 0.3.6
 * Fixed bugs
 
 # exploratory 0.3.3
