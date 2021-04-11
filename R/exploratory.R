@@ -772,6 +772,9 @@ exploratory <- function(
         # dt01 <- mtcars
         # input <- list(3)
         # names(input) <- "sigfig"
+        # input$iv <- "cyl"
+        # input$dv <- "mpg"
+        # input$medi <- "drat"
         # get vars by type
         e_iv <- input$iv
         e_dv <- input$dv
@@ -860,6 +863,9 @@ exploratory <- function(
             set(e_corr_dt, j = j,
                 value = signif(e_corr_dt[[j]], input$sigfig))
           }
+          # add the p value of interest column
+          e_corr_dt[["p_value_of_interest"]] <-
+            e_corr_dt[["corr_p"]]
         } else {
           e_corr_dt <- NULL
         }
@@ -940,6 +946,9 @@ exploratory <- function(
           # round
           e_mod_dt[["interaction_p_value"]] <- signif(
             e_mod_dt[["interaction_p_value"]], input$sigfig)
+          # add the p value of interest column
+          e_mod_dt[["p_value_of_interest"]] <-
+            e_mod_dt[["interaction_p_value"]]
         } else {
           e_mod_dt <- NULL
         }
@@ -1019,6 +1028,9 @@ exploratory <- function(
           # round
           e_medi_dt[["indirect_effect_p_value"]] <- signif(
             e_medi_dt[["indirect_effect_p_value"]], input$sigfig)
+          # add the p value of interest column
+          e_medi_dt[["p_value_of_interest"]] <-
+            e_medi_dt[["indirect_effect_p_value"]]
         } else {
           e_medi_dt <- NULL
         }
@@ -1035,15 +1047,6 @@ exploratory <- function(
           # merge the data tables above
           e_result_merged <- merge_data_table_list(
             dt_list = e_result_dt_list, id = "id")
-          # a column that combines p values
-          e_result_merged[["p_value_of_interest"]] <- fcase(
-            e_result_merged[["analysis"]] == "correlation",
-            e_result_merged[["corr_p"]],
-            e_result_merged[["analysis"]] == "moderation",
-            e_result_merged[["interaction_p_value"]],
-            e_result_merged[["analysis"]] == "mediation",
-            e_result_merged[["indirect_effect_p_value"]]
-          )
           # var types for correlation
           if ("correlation" %in% e_result_merged[["analysis"]]) {
             e_corr_vars <- c("iv", "dv")
