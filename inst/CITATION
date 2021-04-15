@@ -4,12 +4,12 @@ citEntry(
   entry    = "Manual",
   author   = "Jin Kim",
   year     = "2021",
-  title    = "exploratory: Conduct Exploratory Analyses with a Point-and-Click Interface",
-  note     = "R package version 0.3.6",
+  title    = "exploratory: A Tool for Large-Scale Exploratory Analyses",
+  note     = "R package version 0.3.8",
   url      = "https://cran.r-project.org/package=exploratory",
   textVersion = paste0(
   "Jin Kim (2021). ",
-  "exploratory: Conduct Exploratory Analyses with a Point-and-Click Interface. ",
-  "R package version 0.3.6"
+  "exploratory: A Tool for Large-Scale Exploratory Analyses. ",
+  "R package version 0.3.8"
   )
 )

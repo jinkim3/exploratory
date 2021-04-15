@@ -1,6 +1,6 @@
 Package: exploratory
-Title: Conduct Exploratory Analyses with a Point-and-Click Interface
-Version: 0.3.6
+Title: A Tool for Large-Scale Exploratory Analyses
+Version: 0.3.8
 Authors@R: 
     person(given = "Jin",
            family = "Kim",
