@@ -1,3 +1,7 @@
+# exploratory 0.3.10
+* Reducing dependencies on other packages
+* Fixed bugs
+
 # exploratory 0.3.8
 * Updated the DESCRIPTION, CITATION, and NEWS documents
 * Fixed bugs

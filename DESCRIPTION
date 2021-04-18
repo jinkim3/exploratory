@@ -1,6 +1,6 @@
 Package: exploratory
 Title: A Tool for Large-Scale Exploratory Analyses
-Version: 0.3.8
+Version: 0.3.10
 Authors@R: 
     person(given = "Jin",
            family = "Kim",
@@ -41,11 +41,12 @@ Imports:
     lemon,
     lm.beta,
     mediation,
-    moments,
     remotes,
     shiny,
     shinydashboard,
     weights
+Suggests:
+    moments
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
