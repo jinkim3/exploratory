@@ -32,10 +32,10 @@ kurtosis <- function(
   if (!is.numeric(vector)) {
     stop("Please enter a numeric vector for which to calculate kurtosis.")
   }
-  # throw an error if the input for `unbiased` is not a logical value
+  # throw an error if the input for 'unbiased' is not a logical value
   if (!(is.logical(unbiased))) {
     stop(paste0(
-      "The input for the argument `unbiased` ",
+      "The input for the argument 'unbiased' ",
       "must be either TRUE or FALSE."))
   }
   # remove NA values
