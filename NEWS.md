@@ -1,4 +1,4 @@
-# exploratory 0.3.10
+# exploratory 0.3.11
 * Reducing dependencies on other packages
 * Fixed bugs
 

@@ -58,10 +58,10 @@
     # rather than a recommendation to update
     startup_message <- paste0(
       "Package attached: exploratory v", current_pkg_version,
-      "Most recent version available on GitHub: v", github_pkg_version,
-      "\n\nYou have an option to update the package ",
+      ". Most recent version available on GitHub: v", github_pkg_version,
+      "\nYou have an OPTION of updating the package ",
       "with the command `update_exploratory()`.",
-      "If you do so, make sure to restart R.\n\n")
+      " If you do so, make sure to restart R.")
   }
   packageStartupMessage(startup_message)
 }
