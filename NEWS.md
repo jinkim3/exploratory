@@ -1,3 +1,6 @@
+# exploratory 0.3.13
+* Fixed the issue regarding policy violation.
+
 # exploratory 0.3.12
 * Reducing dependencies on other packages
 * Fixed bugs
