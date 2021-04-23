@@ -5,11 +5,11 @@ citEntry(
   author   = "Jin Kim",
   year     = "2021",
   title    = "exploratory: A Tool for Large-Scale Exploratory Analyses",
-  note     = "R package version 0.3.13",
+  note     = "R package version 0.3.14",
   url      = "https://cran.r-project.org/package=exploratory",
   textVersion = paste0(
   "Jin Kim (2021). ",
   "exploratory: A Tool for Large-Scale Exploratory Analyses. ",
-  "R package version 0.3.13"
+  "R package version 0.3.14"
   )
 )
