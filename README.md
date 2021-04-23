@@ -14,11 +14,11 @@ status](https://github.com/jinkim3/exploratory/workflows/R-CMD-check/badge.svg)]
 Downloads](http://cranlogs.r-pkg.org/badges/grand-total/exploratory?color=blue)](https://cran.r-project.org/package=exploratory)
 <!-- badges: end -->
 
-### Exploratory Analysis Tool for Behavioral Science Researchers
+### Exploratory Only: A Tool for Large-Scale Exploratory Analyses
 
 Conduct numerous exploratory analyses in an instant with a
-point-and-click interface (a Shiny App on the local machine). Drag and
-drop variables in a data set to categorize them as possible independent,
+point-and-click interface (a Shiny App on the local machine). Select
+variables in a data set to categorize them as possible independent,
 dependent, moderating, or mediating variables. Then run dozens (or
 hundreds) of analyses with one click to uncover any statistically
 significant relationships among variables.
@@ -69,5 +69,5 @@ library(exploratory)
 update_exploratory()
 
 # launch the exploratory analysis tool on a local machine
-exploratory(data = mtcars)
+exploratory()
 ```

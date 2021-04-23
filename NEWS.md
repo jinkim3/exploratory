@@ -1,4 +1,4 @@
-# exploratory 0.3.15
+# exploratory 0.3.16
 * Package 'exploratory' was Reinstated on CRAN on April 22, 2021.
 
 # exploratory 0.3.13
