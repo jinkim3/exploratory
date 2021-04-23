@@ -1,3 +1,6 @@
+# exploratory 0.3.15
+* Package 'exploratory' was Reinstated on CRAN on April 22, 2021.
+
 # exploratory 0.3.13
 * Fixed the issue regarding policy violation.
 
