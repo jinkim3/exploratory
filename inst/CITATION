@@ -5,12 +5,12 @@ bibentry(
   title = "exploratory: A Tool for Large-Scale Exploratory Analyses",
   author = "Jin Kim",
   year = "2023",
-  note = "R package version 0.3.22",
+  note = "R package version 0.3.31",
   howpublished = "url{https://jinkim.science/docs/exploratory.pdf}",
   url = "https://cran.r-project.org/package=exploratory",
   textVersion = paste0(
   "Jin Kim (2023). ",
   "exploratory: A Tool for Large-Scale Exploratory Analyses. ",
-  "R package version 0.3.22"
+  "R package version 0.3.31"
   )
 )
