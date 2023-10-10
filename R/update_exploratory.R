@@ -54,7 +54,7 @@ update_exploratory <- function(
     remotes::install_github(
       "jinkim3/exploratory", force = force, upgrade = upgrade_other_pkg)
     # attach the package
-    kim::prep("exploratory", silent_if_successful = TRUE)
+    exploratory::prep("exploratory", silent_if_successful = TRUE)
   } else {
     # get version of the currently installed package
     current_pkg_version <- tryCatch(
@@ -124,9 +124,10 @@ update_exploratory <- function(
             unloadNamespace("exploratory")
           }
           remotes::install_github(
-            "jinkim3/exploratory", force = force, upgrade = upgrade_other_pkg)
+            "jinkim3/exploratory", force = force,
+            upgrade = upgrade_other_pkg)
           # attach the package
-          kim::prep("exploratory", silent_if_successful = TRUE)
+          exploratory::prep("exploratory", silent_if_successful = TRUE)
         }
       }
     }
