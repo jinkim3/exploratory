@@ -3,13 +3,13 @@ citHeader("Please cite the R package 'exploratory' in publications as follows:")
 citEntry(
   entry    = "Manual",
   author   = "Jin Kim",
-  year     = "2021",
+  year     = "2023",
   title    = "exploratory: A Tool for Large-Scale Exploratory Analyses",
-  note     = "R package version 0.3.16",
+  note     = "R package version 0.3.21",
   url      = "https://cran.r-project.org/package=exploratory",
   textVersion = paste0(
-  "Jin Kim (2021). ",
+  "Jin Kim (2023). ",
   "exploratory: A Tool for Large-Scale Exploratory Analyses. ",
-  "R package version 0.3.16"
+  "R package version 0.3.21"
   )
 )

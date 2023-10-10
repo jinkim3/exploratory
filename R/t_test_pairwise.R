@@ -136,8 +136,7 @@ t_test_pairwise <- function(
   if (mann_whitney == TRUE) {
     mann_whitney_p_value <- vapply(seq_len(nrow(dt02)), function(i) {
       stats::wilcox.test(
-        dv ~ iv, dt01[iv %in% dt02[i, ]],
-        paired = FALSE)[["p.value"]]},
+        dv ~ iv, dt01[iv %in% dt02[i, ]])[["p.value"]]},
       FUN.VALUE = numeric(1L))
     # bonferroni sig
     bonferroni_signif_for_mann_whitney <- ifelse(

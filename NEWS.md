@@ -1,5 +1,11 @@
+# exploratory 0.3.21
+* Note to developer(s): "The errors for r-devel are from a recent change
+in r-devel fixing the long-standing PR#14359, to the effect that the 
+formula methods for t and Wilcoxon tests defer NA handling to the 
+default method, and do not allow 'paired' arguments."
+
 # exploratory 0.3.16
-* Package 'exploratory' was Reinstated on CRAN on April 22, 2021.
+* Package 'exploratory' was reinstated on CRAN on April 22, 2021.
 
 # exploratory 0.3.13
 * Fixed the issue regarding policy violation.
